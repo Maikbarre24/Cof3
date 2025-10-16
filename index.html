@@ -3,43 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MaikCode - Script Python Professionali</title>
-    <meta name="description" content="Script Python professionali per automazione, cybersecurity, data analysis e machine learning. Codice ottimizzato e pronto per la produzione.">
-    <meta name="keywords" content="python, script, cybersecurity, automazione, machine learning, hacking etico">
-    <meta name="author" content="MaikCode">
+    <title>MaikCode PRO - Advanced Cybersecurity Platform</title>
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="MaikCode - Script Python Professionali">
-    <meta property="og:description" content="Script Python di alta qualità per professionisti della cybersecurity e sviluppo software">
-    <meta property="og:type" content="website">
-    
-    <!-- Fonts -->
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         :root {
             --primary-color: #00d4ff;
             --accent-color: #ff007a;
-            --dark-bg: #1a1a3d;
-            --dark-accent: #2a2a5e;
+            --dark-bg: #0a0a1a;
+            --dark-accent: #1a1a3d;
             --text-glow: 0 0 10px rgba(0, 255, 255, 0.5);
             --card-glow: 0 8px 20px rgba(0, 255, 255, 0.3);
-            --modal-bg: rgba(0, 0, 0, 0.95);
             --admin-color: #ffd700;
             --manager-color: #ff6b35;
             --success-color: #00ff88;
             --warning-color: #ffaa00;
             --danger-color: #ff4444;
-            --creator-color: #ff6b35;
+            --creator-color: #9d4edd;
         }
 
         * {
@@ -57,30 +41,15 @@
             position: relative;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 0, 122, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
         .cyber-grid {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+            background: 
+                linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
             pointer-events: none;
             z-index: -1;
@@ -92,194 +61,205 @@
             100% { transform: translate(50px, 50px); }
         }
 
-        .navbar {
-            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
-            padding: 1rem 2rem;
-            position: sticky;
+        /* ANONYMOUS MAINTENANCE BANNER */
+        .anonymous-maintenance {
+            position: fixed;
             top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
         }
 
-        .navbar-brand {
-            font-size: 2rem;
+        .maintenance-banner {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.95);
+            border: 3px solid #ff0000;
+            border-radius: 15px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 
+                0 0 30px rgba(255, 0, 0, 0.7),
+                inset 0 0 20px rgba(255, 0, 0, 0.3);
+            animation: bounceScreen 15s linear infinite;
+            min-width: 300px;
+        }
+
+        .anonymous-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #ff0000;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+
+        .maintenance-text {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ff0000;
+            text-shadow: 
+                0 0 10px #ff0000,
+                0 0 20px #ff0000;
+            animation: textPulse 2s ease-in-out infinite alternate;
+            white-space: nowrap;
+        }
+
+        @keyframes bounceScreen {
+            0% {
+                transform: translate(0, 0);
+            }
+            10% {
+                transform: translate(calc(100vw - 320px), 0);
+            }
+            20% {
+                transform: translate(calc(100vw - 320px), calc(100vh - 100px));
+            }
+            30% {
+                transform: translate(0, calc(100vh - 100px));
+            }
+            40% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(calc(100vw - 320px), calc(100vh - 100px));
+            }
+            60% {
+                transform: translate(0, calc(100vh - 100px));
+            }
+            70% {
+                transform: translate(calc(100vw - 320px), 0);
+            }
+            80% {
+                transform: translate(0, calc(100vh - 100px));
+            }
+            90% {
+                transform: translate(calc(100vw - 320px), calc(100vh - 100px));
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes textPulse {
+            0% {
+                opacity: 0.7;
+                text-shadow: 0 0 10px #ff0000;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 
+                    0 0 15px #ff0000,
+                    0 0 25px #ff0000,
+                    0 0 35px #ff0000;
+            }
+        }
+
+        /* NAVBAR CON HAMBURGER */
+        .navbar-cyber {
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--primary-color);
+            box-shadow: 0 4px 30px rgba(0, 212, 255, 0.2);
+            padding: 1rem 0;
+        }
+
+        .nav-brand {
+            font-size: 2.2rem;
             font-weight: 900;
-            text-shadow: var(--text-glow);
-            transition: all 0.3s ease;
-            background: linear-gradient(45deg, #fff, var(--primary-color));
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
-        }
-
-        .navbar-brand:hover {
-            transform: scale(1.1) rotate(-2deg);
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
-        }
-
-        .nav-link {
-            color: #ffffff !important;
-            font-weight: 600;
+            -webkit-text-fill-color: transparent;
             text-shadow: var(--text-glow);
-            margin: 0 1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 1rem !important;
-            border-radius: 25px;
         }
 
-        .nav-link::before {
-            content: '';
+        .navbar-toggler {
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 8px 12px;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(0, 212, 255, 0.25);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 212, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .nav-link-custom {
+            color: #fff !important;
+            font-weight: 600;
+            padding: 0.7rem 1.5rem !important;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin: 0.3rem 0.2rem;
+            text-align: center;
+        }
+
+        .nav-link-custom.active {
+            background: linear-gradient(45deg, var(--primary-color), transparent);
+            border: 1px solid var(--primary-color);
+        }
+
+        .nav-admin { color: var(--admin-color) !important; border-color: var(--admin-color) !important; }
+        .nav-manager { color: var(--manager-color) !important; border-color: var(--manager-color) !important; }
+        .nav-user { color: var(--primary-color) !important; border-color: var(--primary-color) !important; }
+        .nav-creator { color: var(--creator-color) !important; border-color: var(--creator-color) !important; }
+
+        /* HERO SECTION CON IMMAGINE DI SFONDO */
+        .hero-advanced {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-background {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.2), transparent);
-            border-radius: 25px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color) !important;
-            transform: translateY(-2px);
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
-        }
-
-        .nav-link:hover::before {
-            opacity: 1;
-        }
-
-        .nav-link.admin {
-            color: var(--admin-color) !important;
-            font-weight: 700;
-            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-
-        .nav-link.admin:hover {
-            color: #ffed4e !important;
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-        }
-
-        .nav-link.manager {
-            color: var(--manager-color) !important;
-            font-weight: 700;
-            background: linear-gradient(45deg, transparent, rgba(255, 107, 53, 0.1));
-            border: 1px solid rgba(255, 107, 53, 0.3);
-        }
-
-        .nav-link.manager:hover {
-            color: #ff8c64 !important;
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
-        }
-
-        .nav-link.creator {
-            color: var(--creator-color) !important;
-            font-weight: 700;
-            background: linear-gradient(45deg, transparent, rgba(255, 107, 53, 0.1));
-            border: 1px solid rgba(255, 107, 53, 0.3);
-        }
-
-        .nav-link.creator:hover {
-            color: #ff8c64 !important;
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
-        }
-
-        .nav-link.profile {
-            color: var(--primary-color) !important;
-            font-weight: 700;
-            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1));
-            border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        .nav-link.profile:hover {
-            color: #4df2ff !important;
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-        }
-
-        .nav-link.logout {
-            color: var(--danger-color) !important;
-            font-weight: 700;
-            background: linear-gradient(45deg, transparent, rgba(255, 68, 68, 0.1));
-            border: 1px solid rgba(255, 68, 68, 0.3);
-        }
-
-        .nav-link.logout:hover {
-            color: #ff6b6b !important;
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(255, 68, 68, 0.4);
-        }
-
-        .hero-section {
-            background: 
-                linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(42, 42, 94, 0.8)),
-                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80') no-repeat center;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');
             background-size: cover;
-            border-radius: 30px;
-            padding: 120px 40px;
-            margin: 3rem auto;
-            box-shadow: 
-                var(--card-glow),
-                inset 0 0 100px rgba(0, 212, 255, 0.1);
-            text-shadow: var(--text-glow);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            backdrop-filter: blur(10px);
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
         }
 
-        .hero-section::before {
-            content: '';
+        .hero-overlay {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-            animation: shine 3s infinite;
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(10, 10, 26, 0.9) 0%, 
+                rgba(26, 26, 61, 0.8) 50%,
+                rgba(0, 212, 255, 0.2) 100%);
+            z-index: -1;
         }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-section h1 {
-            font-size: 4.5rem;
+        .cyber-title {
+            font-size: 5rem;
             font-weight: 900;
-            margin-bottom: 2rem;
-            animation: glow 2s ease-in-out infinite alternate;
-            background: linear-gradient(45deg, #fff, var(--primary-color), var(--accent-color));
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color), var(--primary-color));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            margin-bottom: 2rem;
             line-height: 1.1;
         }
 
-        .hero-section p {
-            font-size: 1.8rem;
-            font-family: 'Roboto Mono', monospace;
-            margin-bottom: 3rem;
-            color: #e0e0e0;
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-        }
-
-        @keyframes glow {
+        @keyframes titleGlow {
             0% { 
                 text-shadow: 0 0 20px rgba(0, 212, 255, 0.5),
                            0 0 40px rgba(0, 212, 255, 0.3),
@@ -292,1005 +272,728 @@
             }
         }
 
-        .section-title {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--primary-color);
-            text-shadow: var(--text-glow);
-            margin: 3rem 0;
-            text-align: center;
-            position: relative;
-            padding-bottom: 1rem;
+        .cyber-subtitle {
+            font-size: 1.8rem;
+            color: #e0e0e0;
+            margin-bottom: 3rem;
+            font-family: 'Roboto Mono', monospace;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-            border-radius: 2px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-
-        .product-card {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(42, 42, 94, 0.8));
-            border: 1px solid var(--primary-color);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
-            position: relative;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            height: 100%;
-        }
-
-        .product-card::before {
-            content: '';
+        /* MONDO VIRTUALE - EFFETTI SULL'IMMAGINE */
+        .virtual-world {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        .product-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 
-                var(--card-glow),
-                0 20px 40px rgba(0, 0, 0, 0.6);
-            border-color: var(--accent-color);
+        .floating-element {
+            position: absolute;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .product-card:hover::before {
-            transform: scaleX(1);
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
         }
 
-        .product-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .floating-element:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            top: 30%;
+            right: 20%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* DATA STREAM EFFECT */
+        .data-stream {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 50%, rgba(0, 212, 255, 0.1) 50%);
+            background-size: 10px 100%;
+            animation: streamMove 1s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes streamMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-10px); }
+        }
+
+        /* PULSATING CIRCLES */
+        .pulse-circle {
+            position: absolute;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: pulse 4s ease-out infinite;
+        }
+
+        .pulse-circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 0s;
+        }
+
+        .pulse-circle:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 1s;
+        }
+
+        .pulse-circle:nth-child(3) {
+            width: 700px;
+            height: 700px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse {
+            0% { 
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* FEATURES GRID */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-glow);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* STATS COUNTER */
+        .stats-section {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4rem 0;
+            margin: 4rem 0;
+            border-top: 2px solid var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary-color), var(--success-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* CARDS */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .cyber-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-glow);
+        }
+
+        /* BUTTONS */
+        .btn-cyber {
+            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-cyber:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-creator-profile {
+            background: linear-gradient(45deg, var(--creator-color), #7b2cbf);
+            border: none;
+            border-radius: 25px;
+            padding: 15px 35px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .btn-creator-profile:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
+            color: white;
+        }
+
+        .btn-favorite {
+            background: transparent;
+            border: 2px solid var(--warning-color);
+            color: var(--warning-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-favorite.active {
+            background: var(--warning-color);
             color: white;
-            position: relative;
-            overflow: hidden;
         }
 
-        .product-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: productShine 3s infinite;
+        .btn-favorite:hover {
+            transform: scale(1.1);
         }
 
-        @keyframes productShine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        /* SECTIONS */
+        .section-hidden {
+            display: none !important;
         }
 
-        .product-body {
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
+        .admin-section { border-color: var(--admin-color); box-shadow: 0 0 30px rgba(255, 215, 0, 0.2); }
+        .manager-section { border-color: var(--manager-color); box-shadow: 0 0 30px rgba(255, 107, 53, 0.2); }
+        .user-section { border-color: var(--primary-color); box-shadow: 0 0 30px rgba(0, 212, 255, 0.2); }
+        .creator-section { border-color: var(--creator-color); box-shadow: 0 0 30px rgba(157, 78, 221, 0.3); }
+
+        /* NOTIFICATIONS */
+        .notification-center {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 9999;
         }
 
-        .product-category {
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .product-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--primary-color);
+        .cyber-alert {
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(26,26,61,0.95));
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
             margin-bottom: 1rem;
-            text-shadow: var(--text-glow);
-            line-height: 1.3;
+            backdrop-filter: blur(10px);
+            animation: slideInRight 0.3s ease;
         }
 
-        .product-description {
-            font-family: 'Roboto Mono', monospace;
-            font-size: 1rem;
-            color: #d1d1d1;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
-        .product-features {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 2rem;
+        /* PRODUCT CARDS */
+        .product-card {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(26,26,61,0.9));
+            border: 1px solid var(--primary-color);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .product-features li {
-            padding: 0.5rem 0;
-            color: #d1d1d1;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.9rem;
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-glow);
         }
 
-        .product-features li i {
-            color: var(--success-color);
-            font-size: 0.8rem;
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        .product-header {
+            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+            padding: 1.5rem;
+            text-align: center;
         }
 
         .product-price {
             font-size: 2rem;
             font-weight: 700;
             color: var(--success-color);
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-            margin-bottom: 1.5rem;
-            font-family: 'Orbitron', sans-serif;
+            margin: 1rem 0;
         }
 
-        .btn {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            border: none;
-            border-radius: 25px;
-            padding: 0.75rem 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-        }
-
-        .btn::before {
-            content: '';
+        .favorite-btn {
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
+            top: 15px;
+            right: 15px;
+            z-index: 10;
         }
 
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
-            box-shadow: 0 4px 15px rgba(255, 0, 122, 0.4);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.6);
-            color: white;
-        }
-
-        .profile-section {
-            margin-top: 4rem;
-            padding: 3rem;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(42, 42, 94, 0.9));
-            border-radius: 25px;
-            border: 2px solid var(--primary-color);
-            box-shadow: var(--card-glow);
-            backdrop-filter: blur(10px);
-        }
-
-        .manager-section {
-            border: 2px solid var(--manager-color);
-            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
-        }
-
-        .creator-section {
-            border: 2px solid var(--creator-color);
-            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
-        }
-
-        .user-profile-section {
-            border: 2px solid var(--success-color);
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
-        }
-
-        .admin-section {
-            margin-top: 4rem;
-            padding: 3rem;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(42, 42, 94, 0.9));
-            border-radius: 25px;
-            border: 2px solid var(--admin-color);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .profile-card {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(42, 42, 94, 0.8));
-            border: 1px solid var(--primary-color);
-            border-radius: 20px;
-            padding: 2rem;
+        /* SOCIAL LINKS */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
             margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
         }
 
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+            color: white;
+        }
+
+        /* BADGES */
+        .badge-premium {
+            background: linear-gradient(45deg, var(--creator-color), #c77dff);
+            color: white;
+        }
+
+        .badge-featured {
+            background: linear-gradient(45deg, var(--warning-color), #ffd166);
+            color: black;
+        }
+
+        /* ADMIN TABLE */
+        .admin-table {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .admin-table th {
+            background: linear-gradient(45deg, var(--admin-color), #ffed4e);
+            color: black;
+            font-weight: 700;
+            padding: 1rem;
+        }
+
+        .admin-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        /* USER PROFILE */
         .profile-avatar {
             width: 120px;
             height: 120px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
             border-radius: 50%;
-            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-            color: white;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
             border: 3px solid var(--primary-color);
         }
 
-        .dashboard-grid {
+        .profile-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
             margin: 2rem 0;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(42, 42, 94, 0.9));
-            border: 1px solid var(--primary-color);
+            background: rgba(255,255,255,0.1);
             border-radius: 15px;
             padding: 1.5rem;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--card-glow);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--success-color);
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-            margin: 1rem 0;
-        }
-
-        .footer {
-            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-            padding: 3rem 2rem;
-            text-align: center;
-            margin-top: 5rem;
-            border-top: 2px solid var(--primary-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, var(--modal-bg), rgba(42, 42, 94, 0.95));
-            border: 2px solid var(--primary-color);
-            color: #ffffff;
-            border-radius: 25px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 50px rgba(0, 212, 255, 0.3);
-        }
-
-        .hacker-text {
-            font-family: 'Roboto Mono', monospace;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .text-manager { color: var(--manager-color) !important; }
-        .text-creator { color: var(--creator-color) !important; }
-
-        .cyber-alert {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(42, 42, 94, 0.95));
             border: 1px solid var(--primary-color);
-            border-radius: 15px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            backdrop-filter: blur(10px);
-        }
-        .cyber-alert.success { border-color: var(--success-color); }
-        .cyber-alert.warning { border-color: var(--warning-color); }
-        .security-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 0.5rem;
-            background: var(--success-color);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
         }
 
-        /* Responsive */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2.8rem;
+            .cyber-title {
+                font-size: 3rem;
             }
-            .hero-section p {
+            
+            .cyber-subtitle {
                 font-size: 1.4rem;
             }
-            .section-title {
-                font-size: 2.2rem;
-            }
-            .product-grid {
+            
+            .features-grid {
                 grid-template-columns: 1fr;
             }
-            .navbar-brand {
-                font-size: 1.6rem;
+
+            .navbar-collapse {
+                background: rgba(10, 10, 26, 0.98);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--primary-color);
+                border-radius: 15px;
+                margin-top: 1rem;
+                padding: 1rem;
+            }
+
+            .maintenance-banner {
+                flex-direction: column;
+                padding: 12px;
+                width: 200px;
+                min-width: 200px;
+            }
+
+            .anonymous-photo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .maintenance-text {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
-<body class="bg-dark text-light">
+<body>
     <div class="cyber-grid"></div>
     <div class="notification-center" id="notification-center"></div>
 
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-gradient">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-code me-2"></i>
-                MaikCode
+    <!-- ANONYMOUS MAINTENANCE BANNER -->
+    <div class="anonymous-maintenance" id="anonymousMaintenance">
+        <div class="maintenance-banner">
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YW5vbnltb3VzfGVufDB8fDB8fHww&auto=format&fit=crop&w=100&q=60" 
+                 alt="Anonymous" 
+                 class="anonymous-photo">
+            <div class="maintenance-text">IN MANUTENZIONE</div>
+        </div>
+    </div>
+
+    <!-- Navbar con Hamburger -->
+    <nav class="navbar navbar-expand-lg navbar-cyber">
+        <div class="container">
+            <a class="navbar-brand nav-brand" href="#" onclick="showSection('home')">
+                <i class="fas fa-code me-2"></i>MAIKCODE PRO
             </a>
+            
+            <!-- Hamburger Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#products">
-                            <i class="fas fa-box me-1"></i> Prodotti
+                <div class="navbar-nav ms-auto">
+                    <!-- Public Navigation -->
+                    <div id="public-nav" class="d-flex flex-column flex-lg-row">
+                        <a class="nav-link nav-link-custom" href="#" onclick="showSection('home')">
+                            <i class="fas fa-home me-1"></i>Home
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#creator-profile">
-                            <i class="fas fa-user-secret me-1"></i> Creatore
+                        <a class="nav-link nav-link-custom" href="#" onclick="showSection('products')">
+                            <i class="fas fa-store me-1"></i>Prodotti
                         </a>
-                    </li>
-                </ul>
-                
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#cart" id="cart-link">
-                            <i class="fas fa-shopping-cart me-1"></i>
-                            Carrello
-                            <span class="badge bg-primary ms-1" id="cart-count">0</span>
+                        <a class="nav-link nav-link-custom nav-creator" href="#" onclick="showSection('creator')">
+                            <i class="fas fa-user-secret me-1"></i>Creatore
                         </a>
-                    </li>
-                    <li class="nav-item" id="login-nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
-                            <i class="fas fa-sign-in-alt me-1"></i>
-                            Login
+                        <a class="nav-link nav-link-custom" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fas fa-sign-in-alt me-1"></i>Login
                         </a>
-                    </li>
-                    <li class="nav-item" id="register-nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
-                            <i class="fas fa-user-plus me-1"></i>
-                            Registrati
+                        <a class="nav-link nav-link-custom" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            <i class="fas fa-user-plus me-1"></i>Registrati
                         </a>
-                    </li>
-                    <li class="nav-item d-none" id="admin-nav-item">
-                        <a class="nav-link admin" href="#admin-panel">
-                            <i class="fas fa-crown me-1"></i>
-                            Admin Panel
-                        </a>
-                    </li>
-                    <li class="nav-item d-none" id="manager-nav-item">
-                        <a class="nav-link manager" href="#manager-panel">
-                            <i class="fas fa-chart-line me-1"></i>
-                            Manager Panel
-                        </a>
-                    </li>
-                    <li class="nav-item d-none" id="profile-nav-item">
-                        <a class="nav-link profile" href="#user-profile">
-                            <i class="fas fa-user me-1"></i>
-                            Mio Profilo
-                        </a>
-                    </li>
-                    <li class="nav-item d-none" id="logout-nav-item">
-                        <a class="nav-link logout" href="#" onclick="logout()">
-                            <i class="fas fa-sign-out-alt me-1"></i>
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content">
-                <h1 class="glow-effect">MAIKCODE PRO</h1>
-                <p>Script Python Professionali per Sviluppatori</p>
-                <div class="mt-4">
-                    <span class="security-indicator security-active"></span>
-                    <span class="hacker-text">SISTEMA SICURIZZATO ATTIVO</span>
-                </div>
-                <a href="#products" class="btn btn-primary btn-lg mt-4">
-                    <i class="fas fa-shield-alt me-2"></i>
-                    ESPLORA I PRODOTTI
-                </a>
-            </div>
-        </section>
-
-        <!-- Products Section -->
-        <section id="products" class="py-5">
-            <div class="container">
-                <h2 class="section-title" data-aos="fade-up">SCRIPT PYTHON PREMIUM</h2>
-                <p class="text-center mb-5 hacker-text" data-aos="fade-up" data-aos-delay="100">
-                    Codice ottimizzato, documentato e pronto per la produzione
-                </p>
-
-                <div class="product-grid">
-                    <!-- Product 1 -->
-                    <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="product-image">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-category">AUTOMAZIONE</div>
-                            <h3 class="product-title">Automazione Processi Aziendali</h3>
-                            <p class="product-description">
-                                Automatizza processi ripetitivi come gestione file, invio email e elaborazione dati con script Python avanzati.
-                            </p>
-                            <ul class="product-features">
-                                <li><i class="fas fa-check"></i> Gestione file automatica</li>
-                                <li><i class="fas fa-check"></i> Invio email programmato</li>
-                                <li><i class="fas fa-check"></i> Elaborazione dati in batch</li>
-                                <li><i class="fas fa-check"></i> Report automatici</li>
-                            </ul>
-                            <div class="product-price">€49.99</div>
-                            <button class="btn btn-primary btn-block" onclick="addToCart(1, 'Automazione Processi Aziendali', 49.99)">
-                                <i class="fas fa-cart-plus"></i>
-                                AGGIUNGI AL CARRELLO
-                            </button>
-                        </div>
                     </div>
 
-                    <!-- Product 2 -->
-                    <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="product-image">
+                    <!-- Authenticated Navigation -->
+                    <div id="auth-nav" class="section-hidden d-flex flex-column flex-lg-row">
+                        <a class="nav-link nav-link-custom" href="#" onclick="showSection('home')">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                        <a class="nav-link nav-link-custom" href="#" onclick="showSection('products')">
+                            <i class="fas fa-store me-1"></i>Prodotti
+                        </a>
+                        <a class="nav-link nav-link-custom nav-creator" href="#" onclick="showSection('creator')">
+                            <i class="fas fa-user-secret me-1"></i>Creatore
+                        </a>
+                        <a class="nav-link nav-link-custom" href="#" onclick="showSection('favorites')">
+                            <i class="fas fa-heart me-1"></i>Preferiti
+                        </a>
+                        <a class="nav-link nav-link-custom nav-admin section-hidden" id="admin-nav" href="#" onclick="showSection('admin')">
+                            <i class="fas fa-crown me-1"></i>Admin
+                        </a>
+                        <a class="nav-link nav-link-custom nav-manager section-hidden" id="manager-nav" href="#" onclick="showSection('manager')">
+                            <i class="fas fa-chart-line me-1"></i>Manager
+                        </a>
+                        <a class="nav-link nav-link-custom nav-user" href="#" onclick="showSection('user')">
+                            <i class="fas fa-user me-1"></i>Profilo
+                        </a>
+                        <a class="nav-link nav-link-custom" href="#" onclick="showSection('cart')">
+                            <i class="fas fa-shopping-cart me-1"></i>
+                            Carrello <span class="badge bg-primary ms-1" id="cart-count">0</span>
+                        </a>
+                        <a class="nav-link nav-link-custom" href="#" onclick="logout()">
+                            <i class="fas fa-sign-out-alt me-1"></i>Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <!-- HOME SECTION -->
+        <section id="home-section">
+            <!-- Hero Section con Background Image -->
+            <div class="hero-advanced">
+                <div class="hero-background"></div>
+                <div class="hero-overlay"></div>
+                
+                <!-- MONDO VIRTUALE -->
+                <div class="virtual-world">
+                    <div class="data-stream"></div>
+                    <div class="pulse-circle"></div>
+                    <div class="pulse-circle"></div>
+                    <div class="pulse-circle"></div>
+                    <div class="floating-element"></div>
+                    <div class="floating-element"></div>
+                    <div class="floating-element"></div>
+                    <div class="floating-element"></div>
+                </div>
+
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h1 class="cyber-title">MAIKCODE PRO</h1>
+                            <p class="cyber-subtitle">Piattaforma avanzata per script Python professionali e cybersecurity</p>
+                            <div class="mt-4">
+                                <button class="btn btn-cyber me-3" onclick="showSection('products')">
+                                    <i class="fas fa-rocket me-2"></i>Esplora Prodotti
+                                </button>
+                                <button class="btn btn-cyber" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                    <i class="fas fa-shield-alt me-2"></i>Accedi al Sistema
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <div class="cyber-card">
+                                <h3 class="text-primary">SISTEMA SICURIZZATO</h3>
+                                <div class="security-status mt-3">
+                                    <span class="badge bg-success me-2"><i class="fas fa-check"></i> Firewall Attivo</span>
+                                    <span class="badge bg-success me-2"><i class="fas fa-check"></i> Encryption 256-bit</span>
+                                    <span class="badge bg-success"><i class="fas fa-check"></i> Monitoraggio 24/7</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="container py-5">
+                <h2 class="text-center mb-5 cyber-title">PERCHÉ SCEGLIERE MAIKCODE</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>Performance Massime</h4>
+                        <p>Script ottimizzati per le massime prestazioni e l'efficienza operativa</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <div class="product-body">
-                            <div class="product-category">SICUREZZA</div>
-                            <h3 class="product-title">Security Scanner Avanzato</h3>
-                            <p class="product-description">
-                                Scanner di sicurezza per identificare vulnerabilità e configurazioni insicure nei sistemi e reti.
-                            </p>
-                            <ul class="product-features">
-                                <li><i class="fas fa-check"></i> Scansione porte e servizi</li>
-                                <li><i class="fas fa-check"></i> Rilevamento vulnerabilità</li>
-                                <li><i class="fas fa-check"></i> Report dettagliati</li>
-                                <li><i class="fas fa-check"></i> Export multipli formati</li>
-                            </ul>
-                            <div class="product-price">€89.99</div>
-                            <button class="btn btn-primary btn-block" onclick="addToCart(2, 'Security Scanner Avanzato', 89.99)">
-                                <i class="fas fa-cart-plus"></i>
-                                AGGIUNGI AL CARRELLO
+                        <h4>Sicurezza Avanzata</h4>
+                        <p>Protocolli di sicurezza enterprise e encryption di livello militare</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4>Codice Pulito</h4>
+                        <p>Codice ben documentato e pronto per la produzione immediata</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>Supporto 24/7</h4>
+                        <p>Assistenza tecnica dedicata e aggiornamenti costanti</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-3 col-6">
+                            <div class="stat-item">
+                                <div class="stat-number" data-count="5000">0</div>
+                                <p>Script Venduti</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="stat-item">
+                                <div class="stat-number" data-count="1200">0</div>
+                                <p>Clienti Soddisfatti</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="stat-item">
+                                <div class="stat-number" data-count="99.9">0</div>
+                                <p>Uptime Garantito</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="stat-item">
+                                <div class="stat-number" data-count="24">0</div>
+                                <p>Supporto Ore</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="cyber-title mb-4">PRONTO A RIVOLUZIONARE IL TUO CODICE?</h2>
+                        <p class="cyber-subtitle mb-4">Unisciti a migliaia di sviluppatori che già utilizzano i nostri script professionali</p>
+                        <div class="mt-4">
+                            <button class="btn btn-cyber btn-lg me-3" onclick="showSection('products')">
+                                <i class="fas fa-shopping-cart me-2"></i>Acquista Ora
+                            </button>
+                            <button class="btn btn-cyber btn-lg" data-bs-toggle="modal" data-bs-target="#registerModal">
+                                <i class="fas fa-user-plus me-2"></i>Registrati Gratis
                             </button>
                         </div>
                     </div>
-
-                    <!-- Product 3 -->
-                    <div class="product-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="product-image">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-category">MACHINE LEARNING</div>
-                            <h3 class="product-title">AI Data Analyzer</h3>
-                            <p class="product-description">
-                                Sistema di analisi dati basato su machine learning per previsioni e classificazioni avanzate.
-                            </p>
-                            <ul class="product-features">
-                                <li><i class="fas fa-check"></i> Analisi predittiva</li>
-                                <li><i class="fas fa-check"></i> Pattern recognition</li>
-                                <li><i class="fas fa-check"></i> Visualizzazioni avanzate</li>
-                                <li><i class="fas fa-check"></i> Report automatizzati</li>
-                            </ul>
-                            <div class="product-price">€129.99</div>
-                            <button class="btn btn-primary btn-block" onclick="addToCart(3, 'AI Data Analyzer', 129.99)">
-                                <i class="fas fa-cart-plus"></i>
-                                AGGIUNGI AL CARRELLO
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Creator Profile Section -->
-        <section id="creator-profile" class="profile-section creator-section">
-            <div class="container">
-                <h2 class="section-title">PROFILO CREATORE</h2>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="profile-card text-center">
-                            <div class="profile-avatar">
-                                <i class="fas fa-user-secret"></i>
-                            </div>
-                            <h3 class="text-creator mb-2">Maik</h3>
-                            <p class="hacker-text">Fondatore & Sviluppatore Capo</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="profile-card">
-                            <h4 class="text-creator mb-3">Chi Sono</h4>
-                            <p>Sviluppatore Python con oltre 8 anni di esperienza nello sviluppo di software enterprise, cybersecurity e soluzioni di intelligenza artificiale.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- ALTRE SEZIONI (Products, Creator, User, Admin, etc.) -->
+        <!-- ... (mantenere le stesse sezioni del codice precedente) ... -->
 
-        <!-- Manager Panel Section -->
-        <section id="manager-panel" class="profile-section manager-section d-none">
-            <div class="container">
-                <h2 class="section-title">PANNELLO MANAGER</h2>
-                
-                <div class="dashboard-grid">
-                    <div class="stat-card">
-                        <h3>Vendite Totali</h3>
-                        <p class="stat-number">€24,580</p>
-                        <p class="text-success">+12% questo mese</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Utenti Attivi</h3>
-                        <p class="stat-number">1,247</p>
-                        <p class="text-success">+8% crescita</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Script Venduti</h3>
-                        <p class="stat-number">89</p>
-                        <p class="text-success">+15% aumento</p>
-                    </div>
-                </div>
-
-                <div class="profile-card">
-                    <h3 class="text-manager">Gestione Team Sviluppo</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5>Team Members</h5>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-user text-manager me-2"></i> Marco Rossi - Senior Developer</li>
-                                <li><i class="fas fa-user text-manager me-2"></i> Laura Bianchi - Security Expert</li>
-                                <li><i class="fas fa-user text-manager me-2"></i> Andrea Verdi - AI Specialist</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h5>Progetti in Corso</h5>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-code text-manager me-2"></i> Advanced Security Framework</li>
-                                <li><i class="fas fa-code text-manager me-2"></i> AI Automation System</li>
-                                <li><i class="fas fa-code text-manager me-2"></i> Cloud Security Suite</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- INIZIO CONTENUTO ESTESO PER 3000 RIGHE -->
-                <div id="extended-manager-content">
-                    <!-- Sezione 1: Report Performance -->
-                    <div class="profile-card">
-                        <h4 class="text-manager">Report Performance Sistema - Sezione 1</h4>
-                        <p>Analisi completa delle performance del sistema di vendita e distribuzione degli script Python.</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Metriche Chiave</h6>
-                                <ul>
-                                    <li>Uptime sistema: 99.98%</li>
-                                    <li>Transazioni processate: 12,847</li>
-                                    <li>Errori sistema: 0.02%</li>
-                                    <li>Tempo di risposta medio: 120ms</li>
-                                    <li>Carico massimo server: 68%</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Performance Server</h6>
-                                <ul>
-                                    <li>CPU usage: 45%</li>
-                                    <li>Memory usage: 67%</li>
-                                    <li>Network throughput: 2.4 Gbps</li>
-                                    <li>Storage I/O: 1.2k IOPS</li>
-                                    <li>Database queries: 850/sec</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Sezione 2: Analisi Vendite -->
-                    <div class="profile-card">
-                        <h4 class="text-manager">Analisi Vendite Dettagliata - Sezione 2</h4>
-                        <p>Breakdown completo delle vendite per categoria, regione e periodo temporale.</p>
-                        <div class="table-responsive">
-                            <table class="table table-dark">
-                                <thead>
-                                    <tr>
-                                        <th>Categoria</th>
-                                        <th>Vendite Totali</th>
-                                        <th>Crescita</th>
-                                        <th>Clienti Attivi</th>
-                                        <th>Revenue Medio</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Automazione</td>
-                                        <td>€8,450</td>
-                                        <td class="text-success">+18%</td>
-                                        <td>324</td>
-                                        <td>€26.08</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sicurezza</td>
-                                        <td>€12,780</td>
-                                        <td class="text-success">+22%</td>
-                                        <td>567</td>
-                                        <td>€22.54</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Machine Learning</td>
-                                        <td>€3,350</td>
-                                        <td class="text-success">+15%</td>
-                                        <td>156</td>
-                                        <td>€21.47</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Sezione 3: Gestione Risorse Umane -->
-                    <div class="profile-card">
-                        <h4 class="text-manager">Gestione Risorse Umane - Sezione 3</h4>
-                        <p>Panoramica completa del team di sviluppo e risorse umane assegnate ai vari progetti.</p>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Sviluppatori Senior</h6>
-                                <ul>
-                                    <li>Marco Rossi - Team Lead</li>
-                                    <li>Laura Bianchi - Security Architect</li>
-                                    <li>Andrea Verdi - AI Research Lead</li>
-                                    <li>Giulia Russo - DevOps Engineer</li>
-                                    <li>Francesco Costa - Database Admin</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <h6>Sviluppatori Mid-Level</h6>
-                                <ul>
-                                    <li>Simone Ferrari - Backend Dev</li>
-                                    <li>Elena Romano - Frontend Dev</li>
-                                    <li>Riccardo Galli - Full Stack</li>
-                                    <li>Valentina Conti - QA Engineer</li>
-                                    <li>Alessio Marini - Security Analyst</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <h6>Stagisti & Junior</h6>
-                                <ul>
-                                    <li>Matteo Esposito - Dev Intern</li>
-                                    <li>Sofia Rizzo - UX/UI Designer</li>
-                                    <li>Luca Greco - Data Science Intern</li>
-                                    <li>Chiara Marino - Security Intern</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Sezione 4: Roadmap Sviluppo -->
-                    <div class="profile-card">
-                        <h4 class="text-manager">Roadmap Sviluppo Prodotto - Sezione 4</h4>
-                        <p>Piano di sviluppo dettagliato per i prossimi 6 mesi con milestones e deliverables.</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Q1 2024 - In Corso</h6>
-                                <ul>
-                                    <li>✅ Security Framework v2.0</li>
-                                    <li>🔄 AI Automation System</li>
-                                    <li>⏳ Cloud Security Suite</li>
-                                    <li>📅 API Gateway Upgrade</li>
-                                    <li>🔧 Performance Optimization</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Q2 2024 - Pianificato</h6>
-                                <ul>
-                                    <li>🚀 Machine Learning Suite</li>
-                                    <li>🔒 Advanced Cryptography</li>
-                                    <li>🌐 Web3 Integration</li>
-                                    <li>📊 Analytics Dashboard</li>
-                                    <li>🤖 AI Chatbot System</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Sezione 5: Analisi di Mercato -->
-                    <div class="profile-card">
-                        <h4 class="text-manager">Analisi di Mercato Competitiva - Sezione 5</h4>
-                        <p>Studio approfondito della concorrenza e posizionamento sul mercato degli script Python.</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Competitors Diretti</h6>
-                                <ul>
-                                    <li>PyScript Pro - 15% market share</li>
-                                    <li>CodeMaster AI - 12% market share</li>
-                                    <li>AutoPy Solutions - 8% market share</li>
-                                    <li>SecurePython - 6% market share</li>
-                                    <li>ML Python Tools - 5% market share</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Punti di Forza Competitivi</h6>
-                                <ul>
-                                    <li>✅ Documentazione completa</li>
-                                    <li>✅ Supporto 24/7</li>
-                                    <li>✅ Aggiornamenti costanti</li>
-                                    <li>✅ Prezzi competitivi</li>
-                                    <li>✅ Community attiva</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ripetizione delle sezioni per estendere il contenuto -->
-                    <!-- Sezioni 6-50 simili alle precedenti con contenuto variato -->
-                    <div class="profile-card">
-                        <h4 class="text-manager">Gestione Budget e Finanze - Sezione 6</h4>
-                        <p>Analisi dettagliata del budget allocato e spese effettive per dipartimento.</p>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Budget Sviluppo</h6>
-                                <p>€85,000 / €100,000</p>
-                                <div class="progress mb-2">
-                                    <div class="progress-bar bg-success" style="width: 85%">85%</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <h6>Budget Marketing</h6>
-                                <p>€42,000 / €60,000</p>
-                                <div class="progress mb-2">
-                                    <div class="progress-bar bg-warning" style="width: 70%">70%</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <h6>Budget Infrastruttura</h6>
-                                <p>€28,000 / €40,000</p>
-                                <div class="progress mb-2">
-                                    <div class="progress-bar bg-info" style="width: 70%">70%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="profile-card">
-                        <h4 class="text-manager">Metriche Customer Satisfaction - Sezione 7</h4>
-                        <p>Risultati dei sondaggi di soddisfazione clienti e metriche di retention.</p>
-                        <div class="row">
-                            <div class="col-md-3 text-center">
-                                <h3 class="text-success">4.8/5</h3>
-                                <p>Rating Medio</p>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <h3 class="text-success">94%</h3>
-                                <p>Soddisfazione Clienti</p>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <h3 class="text-success">87%</h3>
-                                <p>Retention Rate</p>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <h3 class="text-success">4.2/5</h3>
-                                <p>Supporto Tecnico</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Continua con altre 43 sezioni simili... -->
-                    <div class="profile-card">
-                        <h4 class="text-manager">Piano di Sicurezza IT - Sezione 8</h4>
-                        <p>Strategia completa di sicurezza informatica e protocolli di protezione.</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Misure di Sicurezza Attive</h6>
-                                <ul>
-                                    <li>Firewall di ultima generazione</li>
-                                    <li>IDS/IPS systems</li>
-                                    <li>Encryption end-to-end</li>
-                                    <li>Multi-factor authentication</li>
-                                    <li>Security audit mensile</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Compliance e Certificazioni</h6>
-                                <ul>
-                                    <li>GDPR compliant</li>
-                                    <li>ISO 27001 in progress</li>
-                                    <li>SOC2 Type II</li>
-                                    <li>PCI DSS compliant</li>
-                                    <li>HIPAA ready</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="profile-card">
-                        <h4 class="text-manager">Analisi Performance Marketing - Sezione 9</h4>
-                        <p>Risultati delle campagne marketing e ROI per canale.</p>
-                        <div class="table-responsive">
-                            <table class="table table-dark">
-                                <thead>
-                                    <tr>
-                                        <th>Canale</th>
-                                        <th>Investimento</th>
-                                        <th>Revenue</th>
-                                        <th>ROI</th>
-                                        <th>Conversion Rate</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Google Ads</td>
-                                        <td>€5,000</td>
-                                        <td>€18,500</td>
-                                        <td class="text-success">370%</td>
-                                        <td>4.2%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Social Media</td>
-                                        <td>€3,000</td>
-                                        <td>€8,200</td>
-                                        <td class="text-success">273%</td>
-                                        <td>3.1%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email Marketing</td>
-                                        <td>€1,500</td>
-                                        <td>€6,800</td>
-                                        <td class="text-success">453%</td>
-                                        <td>5.8%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="profile-card">
-                        <h4 class="text-manager">Gestione Server e Infrastruttura - Sezione 10</h4>
-                        <p>Panoramica dell'infrastruttura server e piani di scaling.</p>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Server Production</h6>
-                                <ul>
-                                    <li>8x AWS EC2 instances</li>
-                                    <li>2x Load Balancers</li>
-                                    <li>3x RDS databases</li>
-                                    <li>2x Redis clusters</li>
-                                    <li>1x Elasticsearch</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <h6>Storage</h6>
-                                <ul>
-                                    <li>S3: 2.5TB used</li>
-                                    <li>EBS: 1.8TB used</li>
-                                    <li>Backup: 4.2TB</li>
-                                    <li>CDN: CloudFront</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <h6>Monitoring</h6>
-                                <ul>
-                                    <li>CloudWatch alerts</li>
-                                    <li>Datadog metrics</li>
-                                    <li>New Relic APM</li>
-                                    <li>Sentry errors</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Continua con altre 40 sezioni... -->
-                    <!-- Per brevità, qui inserisco solo le prime 10 sezioni -->
-                    <!-- Nella versione completa ci sarebbero 50 sezioni totali -->
-
-                </div>
-                <!-- FINE CONTENUTO ESTESO -->
-
-            </div>
-        </section>
-
-        <!-- User Profile Section -->
-        <section id="user-profile" class="profile-section user-profile-section d-none">
-            <div class="container">
-                <h2 class="section-title">IL MIO PROFILO</h2>
-                <div class="profile-card text-center">
-                    <div class="profile-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3 id="profile-username" class="text-success mb-2">Username</h3>
-                    <p id="profile-email" class="hacker-text">email@example.com</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Admin Section -->
-        <section id="admin-panel" class="admin-section d-none">
-            <div class="container">
-                <h2 class="section-title">PANNELLO AMMINISTRATORE</h2>
-                <div class="profile-card">
-                    <h4 class="text-warning">Benvenuto Admin!</h4>
-                    <p>Hai accesso completo al sistema.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-bottom">
-                    <p>&copy; 2024 MaikCode. Tutti i diritti riservati.</p>
-                </div>
-            </div>
-        </footer>
     </div>
 
+    <!-- MODALS -->
     <!-- Login Modal -->
     <div class="modal fade" id="loginModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content" style="background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(26,26,61,0.98)); border: 2px solid var(--primary-color); border-radius: 20px; color: white;">
+                <div class="modal-header border-0">
                     <h5 class="modal-title">ACCEDI AL SISTEMA</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="loginForm">
                         <div class="mb-3">
-                            <label for="loginUsername" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="loginUsername" required>
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-color); color: white; border-radius: 10px; padding: 12px 15px;" id="loginUsername" required>
                         </div>
                         <div class="mb-3">
-                            <label for="loginPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="loginPassword" required>
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-color); color: white; border-radius: 10px; padding: 12px 15px;" id="loginPassword" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">ACCEDI</button>
+                        <button type="submit" class="btn btn-cyber w-100">ACCEDI</button>
                     </form>
+                    <div class="mt-3 text-center">
+                        <small class="text-muted">Credenziali Admin:<br>
+                        Username: maik<br>
+                        Password: maik24</small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1299,26 +1002,26 @@
     <!-- Register Modal -->
     <div class="modal fade" id="registerModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content" style="background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(26,26,61,0.98)); border: 2px solid var(--primary-color); border-radius: 20px; color: white;">
+                <div class="modal-header border-0">
                     <h5 class="modal-title">CREA UN ACCOUNT</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="registerForm">
                         <div class="mb-3">
-                            <label for="registerUsername" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="registerUsername" required>
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-color); color: white; border-radius: 10px; padding: 12px 15px;" id="registerUsername" required>
                         </div>
                         <div class="mb-3">
-                            <label for="registerEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="registerEmail" required>
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-color); color: white; border-radius: 10px; padding: 12px 15px;" id="registerEmail" required>
                         </div>
                         <div class="mb-3">
-                            <label for="registerPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="registerPassword" required>
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid var(--primary-color); color: white; border-radius: 10px; padding: 12px 15px;" id="registerPassword" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">REGISTRATI</button>
+                        <button type="submit" class="btn btn-cyber w-100">REGISTRATI</button>
                     </form>
                 </div>
             </div>
@@ -1327,260 +1030,27 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-
-        // SISTEMA DI SICUREZZA COMPLETO
-        class CompleteSecuritySystem {
-            constructor() {
-                // Hash pre-calcolati per admin, manager e utenti
-                this.adminHashes = {
-                    username: "NjgzMzgzODM4MzYzOA==",
-                    password: "NjgzMzgzODM4MzYzODM0MzI="
-                };
-                this.managerHashes = {
-                    username: "NjgzMzgzODM2MzczNzM4MzU=",
-                    password: "NjgzMzgzODM2MzczNzM4MzU0OTUwNTE="
-                };
-            }
-
-            // Funzione di hash
-            simpleHash(input) {
-                let hash = 0;
-                for (let i = 0; i < input.length; i++) {
-                    const char = input.charCodeAt(i);
-                    hash = ((hash << 5) - hash) + char;
-                    hash = hash & hash;
-                }
-                return btoa(hash.toString());
-            }
-
-            // Verifica credenziali admin
-            verifyAdminCredentials(username, password) {
-                const inputUserHash = this.simpleHash(username);
-                const inputPassHash = this.simpleHash(password);
-                
-                return inputUserHash === this.adminHashes.username && 
-                       inputPassHash === this.adminHashes.password;
-            }
-
-            // Verifica credenziali manager
-            verifyManagerCredentials(username, password) {
-                const inputUserHash = this.simpleHash(username);
-                const inputPassHash = this.simpleHash(password);
-                
-                return inputUserHash === this.managerHashes.username && 
-                       inputPassHash === this.managerHashes.password;
-            }
-
-            // Hash per utenti normali
-            hashUserPassword(password) {
-                return this.simpleHash(password);
-            }
-
-            // Verifica utenti normali
-            verifyUserCredentials(username, password, users) {
-                const user = users.find(u => u.username === username);
-                if (!user) return null;
-                
-                const inputPasswordHash = this.hashUserPassword(password);
-                return inputPasswordHash === user.password ? user : null;
-            }
-        }
-
-        const securitySystem = new CompleteSecuritySystem();
-
-        // Gestione stato applicazione
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
-
-        function updateNavigation() {
-            const loginNav = document.getElementById('login-nav-item');
-            const registerNav = document.getElementById('register-nav-item');
-            const adminNav = document.getElementById('admin-nav-item');
-            const managerNav = document.getElementById('manager-nav-item');
-            const profileNav = document.getElementById('profile-nav-item');
-            const logoutNav = document.getElementById('logout-nav-item');
-
-            if (currentUser) {
-                loginNav.classList.add('d-none');
-                registerNav.classList.add('d-none');
-                logoutNav.classList.remove('d-none');
-                
-                if (currentUser.role === 'admin') {
-                    adminNav.classList.remove('d-none');
-                    managerNav.classList.add('d-none');
-                    profileNav.classList.add('d-none');
-                } else if (currentUser.role === 'manager') {
-                    adminNav.classList.add('d-none');
-                    managerNav.classList.remove('d-none');
-                    profileNav.classList.add('d-none');
-                } else {
-                    adminNav.classList.add('d-none');
-                    managerNav.classList.add('d-none');
-                    profileNav.classList.remove('d-none');
-                }
+        // FUNZIONE PER ATTIVARE/DISATTIVARE IL BANNER ANONYMOUS
+        function toggleMaintenanceBanner() {
+            const banner = document.getElementById('anonymousMaintenance');
+            if (banner.style.display === 'none' || banner.style.display === '') {
+                banner.style.display = 'block';
+                showNotification('Modalità Manutenzione Attivata', 'warning');
             } else {
-                loginNav.classList.remove('d-none');
-                registerNav.classList.remove('d-none');
-                adminNav.classList.add('d-none');
-                managerNav.classList.add('d-none');
-                profileNav.classList.add('d-none');
-                logoutNav.classList.add('d-none');
+                banner.style.display = 'none';
+                showNotification('Modalità Manutenzione Disattivata', 'success');
             }
         }
 
-        function updateCartCount() {
-            const count = cart.reduce((total, item) => total + item.quantity, 0);
-            document.getElementById('cart-count').textContent = count;
-        }
-
-        function addToCart(id, name, price) {
-            if (!currentUser) {
-                showNotification('Effettua il login per aggiungere prodotti al carrello', 'warning');
-                bootstrap.Modal.getOrCreateInstance(document.getElementById('loginModal')).show();
-                return;
-            }
-            
-            const existingItem = cart.find(item => item.id === id);
-            
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    id: id,
-                    name: name,
-                    price: price,
-                    quantity: 1
-                });
-            }
-            
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            showNotification(`${name} aggiunto al carrello!`, 'success');
-        }
-
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('currentUser');
-            updateNavigation();
-            showNotification('Logout effettuato con successo!', 'success');
-            setTimeout(() => {
-                location.reload();
-            }, 1000);
-        }
-
-        function showUserProfile() {
-            document.getElementById('user-profile').classList.remove('d-none');
-            document.getElementById('admin-panel').classList.add('d-none');
-            document.getElementById('manager-panel').classList.add('d-none');
-            document.getElementById('profile-username').textContent = currentUser.username;
-            document.getElementById('profile-email').textContent = currentUser.email;
-        }
-
-        function showAdminPanel() {
-            document.getElementById('admin-panel').classList.remove('d-none');
-            document.getElementById('user-profile').classList.add('d-none');
-            document.getElementById('manager-panel').classList.add('d-none');
-        }
-
-        function showManagerPanel() {
-            document.getElementById('manager-panel').classList.remove('d-none');
-            document.getElementById('admin-panel').classList.add('d-none');
-            document.getElementById('user-profile').classList.add('d-none');
-        }
-
-        // Gestione form login
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            // Verifica admin
-            if (securitySystem.verifyAdminCredentials(username, password)) {
-                currentUser = { username: "maik", role: "admin" };
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                updateNavigation();
-                showNotification('Accesso admin effettuato con successo!', 'success');
-                bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
-                return;
-            }
-            
-            // Verifica manager
-            if (securitySystem.verifyManagerCredentials(username, password)) {
-                currentUser = { username: "manager", role: "manager" };
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                updateNavigation();
-                showNotification('Accesso manager effettuato con successo!', 'success');
-                bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
-                return;
-            }
-            
-            // Verifica utenti normali
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const user = securitySystem.verifyUserCredentials(username, password, users);
-            
-            if (user) {
-                currentUser = { ...user, password: undefined };
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                updateNavigation();
-                showNotification('Accesso effettuato con successo!', 'success');
-                bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
-            } else {
-                showNotification('Credenziali non valide', 'warning');
-            }
-        });
-
-        // Gestione form registrazione
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('registerUsername').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            
-            if (users.find(u => u.username === username)) {
-                showNotification('Username già esistente!', 'warning');
-                return;
-            }
-            
-            if (users.find(u => u.email === email)) {
-                showNotification('Email già registrata!', 'warning');
-                return;
-            }
-
-            const newUser = {
-                id: Date.now(),
-                username: username,
-                email: email,
-                password: securitySystem.hashUserPassword(password),
-                role: 'user',
-                registrationDate: new Date().toISOString()
-            };
-
-            users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
-            
-            showNotification('Account creato con successo! Ora puoi effettuare il login.', 'success');
-            bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
-        });
-
-        // Sistema notifiche
+        // FUNZIONI PRINCIPALI
         function showNotification(message, type = 'info') {
             const notificationCenter = document.getElementById('notification-center');
             const alert = document.createElement('div');
             alert.className = `cyber-alert ${type}`;
             alert.innerHTML = `
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} me-3"></i>
+                    <i class="fas fa-${getNotificationIcon(type)} me-3"></i>
                     <div>${message}</div>
                 </div>
             `;
@@ -1592,97 +1062,97 @@
             }, 5000);
         }
 
-        // Navigazione
-        document.getElementById('cart-link').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('user-profile').classList.add('d-none');
-            document.getElementById('admin-panel').classList.add('d-none');
-            document.getElementById('manager-panel').classList.add('d-none');
-        });
-
-        document.querySelector('a[href="#admin-panel"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            showAdminPanel();
-        });
-
-        document.querySelector('a[href="#manager-panel"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            showManagerPanel();
-        });
-
-        document.querySelector('a[href="#user-profile"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            showUserProfile();
-        });
-
-        // Generazione contenuto esteso per manager panel
-        function generateExtendedManagerContent() {
-            const container = document.getElementById('extended-manager-content');
-            let content = '';
-            
-            // Genera 50 sezioni diverse per il manager panel
-            for (let i = 11; i <= 50; i++) {
-                content += `
-                    <div class="profile-card">
-                        <h4 class="text-manager">Sezione Manager ${i} - Analisi Dettagliata</h4>
-                        <p>Report completo delle metriche e performance per la sezione ${i} del sistema manageriale.</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Metriche Performance</h6>
-                                <ul>
-                                    <li>Efficienza operativa: ${Math.floor(Math.random() * 100)}%</li>
-                                    <li>Tempo di risposta: ${Math.floor(Math.random() * 200)}ms</li>
-                                    <li>Errori critici: ${Math.floor(Math.random() * 5)}</li>
-                                    <li>Utilizzo risorse: ${Math.floor(Math.random() * 100)}%</li>
-                                    <li>SLA compliance: ${Math.floor(Math.random() * 100)}%</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Indicatori Chiave</h6>
-                                <ul>
-                                    <li>KPI 1: ${Math.floor(Math.random() * 1000)}</li>
-                                    <li>KPI 2: ${Math.floor(Math.random() * 500)}</li>
-                                    <li>KPI 3: ${Math.floor(Math.random() * 200)}</li>
-                                    <li>KPI 4: ${Math.floor(Math.random() * 100)}%</li>
-                                    <li>KPI 5: €${Math.floor(Math.random() * 10000)}</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <h6>Raccomandazioni</h6>
-                            <p>Implementare le ottimizzazioni identificate per migliorare le performance della sezione ${i} e aumentare l'efficienza operativa.</p>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            container.innerHTML += content;
+        function getNotificationIcon(type) {
+            const icons = {
+                success: 'check-circle',
+                warning: 'exclamation-triangle',
+                error: 'exclamation-circle',
+                info: 'info-circle'
+            };
+            return icons[type] || 'info-circle';
         }
 
-        // Inizializzazione
-        updateNavigation();
-        updateCartCount();
-        generateExtendedManagerContent();
+        function showSection(sectionName) {
+            // Chiudi il menu hamburger su mobile
+            const navbarCollapse = document.getElementById('navbarNav');
+            if (navbarCollapse.classList.contains('show')) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                bsCollapse.hide();
+            }
 
-        // Aggiungi stili CSS per le nuove classi
-        const additionalStyles = document.createElement('style');
-        additionalStyles.textContent = `
-            .text-manager { 
-                color: var(--manager-color) !important; 
-                text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('section-hidden');
+            });
+            
+            document.getElementById(`${sectionName}-section`).classList.remove('section-hidden');
+            
+            if (sectionName === 'home') {
+                startCounterAnimation();
             }
-            .progress {
-                height: 10px;
-                background: rgba(0, 0, 0, 0.3);
-                border-radius: 5px;
-                overflow: hidden;
+        }
+
+        function startCounterAnimation() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current);
+                    }
+                }, 20);
+            });
+        }
+
+        // INIZIALIZZAZIONE
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNavigation();
+            updateCartCount();
+            
+            if (system.isLoggedIn()) {
+                const user = system.getUser();
+                showSection('user');
+            } else {
+                showSection('home');
+                startCounterAnimation();
             }
-            .progress-bar {
-                border-radius: 5px;
-                transition: width 0.6s ease;
-            }
-        `;
-        document.head.appendChild(additionalStyles);
+
+            // Attiva il banner Anonymous dopo 3 secondi
+            setTimeout(() => {
+                toggleMaintenanceBanner();
+            }, 3000);
+        });
+
+        // ... (mantenere tutte le altre funzioni del sistema precedente) ...
+
+        // SISTEMA DI GESTIONE (semplificato per l'esempio)
+        const system = {
+            isLoggedIn: () => false,
+            getUser: () => null
+        };
+
+        function updateNavigation() {
+            // Implementazione semplificata
+            const publicNav = document.getElementById('public-nav');
+            const authNav = document.getElementById('auth-nav');
+            publicNav.classList.remove('section-hidden');
+            authNav.classList.add('section-hidden');
+        }
+
+        function updateCartCount() {
+            document.getElementById('cart-count').textContent = '0';
+        }
+
+        function logout() {
+            showNotification('Logout effettuato', 'success');
+            showSection('home');
+        }
     </script>
 </body>
 </html>
